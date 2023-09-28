@@ -1,6 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useAppContext } from "./AppContext";
-import { post } from "../request";
 
 const SubmitForm = () => {
     
@@ -16,12 +15,6 @@ const SubmitForm = () => {
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         setFormData(userInput);
-        // try {
-        //     const response = await post("/submit", formData);
-        //     console.log(response.data);
-        // } catch (error) {
-        //     console.error('网络错误', error);
-        // }
     };
 
     return (
