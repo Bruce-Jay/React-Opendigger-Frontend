@@ -1,0 +1,8 @@
+.data-element {
+    display: inline-block;
+    width: calc(20% - 10px); /* 每行四个元素，间距为10px */
+    margin: 5px; /* 间距 */
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
