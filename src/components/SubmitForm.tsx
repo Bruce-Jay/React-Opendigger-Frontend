@@ -29,7 +29,7 @@ const SubmitForm = () => {
             <h1>Form</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="repository">Repository: </label>
+                    <label htmlFor="repository">Repository:  </label>
                     <input type="text" id="repository" name="repository" value={userInput.repository} onChange={handleInputChange}></input>
                     <div>Recommended Repo: valhalla/valhalla</div>
                 </div>
