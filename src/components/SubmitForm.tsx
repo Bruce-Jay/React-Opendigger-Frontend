@@ -1,42 +1,73 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { FormEvent } from "react";
 import { useAppContext } from "./AppContext";
+import { Button, Form, Input, Select } from "antd";
 
-const SubmitForm = () => {
-    
-    const {userInput, setUserInput, formData, setFormData} = useAppContext();
 
-    // 处理表单字段变化
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setUserInput({ ...userInput, [name]: value });
-    };
+
+const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+};
+
+type FieldType = {
+    repository?: string;
+    metric?: string;
+};
+
+const SubmitForm: React.FC = () => {
+    const { formData, setFormData } = useAppContext();
+    const [form] = Form.useForm();
 
     // 处理表单提交
-    const handleSubmit = async (event: FormEvent) => {
-        event.preventDefault();
-        setFormData(userInput);
+    const onFinish = (values: any) => {
+        console.log("Success:", values);
+        setFormData(values);
     };
 
+
     return (
-        <div>
-            <h1>Form</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="repository">Repository:  </label>
-                    <input type="text" id="repository" name="repository" value={userInput.repository} onChange={handleInputChange}></input>
-                    <div>Recommended Repo: valhalla/valhalla</div>
-                </div>
-                <div>
-                    <label htmlFor="metric">Metric: </label>
-                    <input type="text" id="metric" name="metric" value={userInput.metric} onChange={handleInputChange}></input>
-                    <div>Recommended Metric: openrank</div>
-                </div>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
-    )
+        <Form
+            form={form}
+            name="basic"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 16 }}
+            style={{ maxWidth: 600 }}
+            initialValues={{ repository: 'valhalla/valhalla', metric: 'openrank' }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
+        >
+            <Form.Item<FieldType>
+                label="repository"
+                name="repository"
+                rules={[{ required: true, message: "Please input your repository!" }]}
+            >
+                <Input defaultValue="valhalla/valhalla"/>
+            </Form.Item>
+
+            <Form.Item<FieldType>
+                label="metric"
+                name="metric"
+                rules={[{ required: true, message: "Please input your metric!" }]}
+            >
+                <Select 
+                    defaultValue="openrank"
+                    style={{width: 300}}
+                    options={[
+                        {value: "openrank", label: "openrank"},
+                        {value: "activity", label: "activity"}
+                    ]}
+                />
+            </Form.Item>
+            
+            
+
+            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Button type="primary" htmlType="submit">
+                    Submit
+                </Button>
+            </Form.Item>
+        </Form>
+    );
 };
 
 export default SubmitForm;

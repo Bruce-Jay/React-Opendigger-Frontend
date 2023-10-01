@@ -4,5 +4,15 @@
     margin: 5px; /* 间距 */
     padding: 10px;
     border: 1px solid #ccc;
-  }
-  
+}
+
+.gutter-box {
+    padding: 8px 0;
+    background: #00a0e9;
+}
+
+.scrollable-container {
+  overflow: auto;
+  height: 300px; /* 设置容器高度 */
+}
+

@@ -5,9 +5,13 @@ interface FormData {
     metric: string;
 }
 
+interface RawData {
+    [date: string]: number;
+}
+
 interface AppContextType {
-    userInput: FormData;
-    setUserInput: (data: FormData) => void;
+    rawData: RawData;
+    setRawData: (data: RawData) => void;
     formData: FormData;
     setFormData: (data: FormData) => void;
 }
@@ -19,10 +23,8 @@ interface AppContextProviderProps {
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
-    const [userInput, setUserInput] = useState<FormData>({
-        repository: "",
-        metric: "",
-    });
+
+    const [rawData, setRawData] = useState<RawData>({})
 
     const [formData, setFormData] = useState<FormData>({
         repository: "",
@@ -33,8 +35,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
     return (
         <AppContext.Provider
             value={{
-                userInput,
-                setUserInput,
+                rawData,
+                setRawData,
                 formData,
                 setFormData
             }}

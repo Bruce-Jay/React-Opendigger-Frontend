@@ -11,6 +11,16 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3007](http://localhost:3007) to view it in the browser.
 
+在直接 pnpm install && pnpm start 以后，您可能会看到 project 在 3000 端口启动，不用担心。如果您需要修改端口，直接进入 node_modules/react-scripts/scripts/utils/start.js 的 54-56 行：
+
+```js
+// Tools like Cloud9 rely on this.
+const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3007; // 修改此处的 3000 为 3007
+const HOST = process.env.HOST || "0.0.0.0";
+```
+
+再重新运行即可。
+
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
