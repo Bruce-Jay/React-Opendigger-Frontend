@@ -1,27 +1,15 @@
-import { Row, Col } from 'antd';
-
-import './index.css';
-import DisplayMetricData from "./components/DisplayMetricData";
-import SubmitForm from './components/SubmitForm';
-import LineChart from './components/LineChart';
-import TabBar from './components/TabBar';
-import { AppContextProvider } from './components/AppContext';
+import Main from './pages/Main';
+import LoginAndRegister from './pages/LoginAndRegister';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <AppContextProvider>
-      <TabBar>
-        <Row gutter={16}>
-          <Col span={12}>
-            <SubmitForm />
-            <LineChart />
-          </Col>
-          <Col span={12}>
-            <DisplayMetricData />
-          </Col>
-        </Row>
-      </TabBar>
-    </AppContextProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<LoginAndRegister />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

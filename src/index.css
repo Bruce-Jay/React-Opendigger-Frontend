@@ -16,3 +16,14 @@
   height: 300px; /* 设置容器高度 */
 }
 
+.loginButtonSize {
+  width: 400px;
+}
+
+.loginDiv {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+

@@ -44,18 +44,27 @@ dependencies:
   eslint:
     specifier: ^8.50.0
     version: 8.50.0
+  rc-slider-captcha:
+    specifier: ^1.2.1
+    version: 1.2.1(react@18.2.0)
   react:
     specifier: ^18.2.0
     version: 18.2.0
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-router-dom:
+    specifier: ^6.16.0
+    version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
   react-scripts:
     specifier: 5.0.1
     version: 5.0.1(@babel/plugin-syntax-flow@7.22.5)(@babel/plugin-transform-react-jsx@7.22.15)(eslint@8.50.0)(react@18.2.0)(typescript@4.9.5)
   typescript:
     specifier: ^4.9.5
     version: 4.9.5
+  ut2:
+    specifier: ^1.4.9
+    version: 1.4.9
   web-vitals:
     specifier: ^2.1.4
     version: 2.1.4
@@ -2265,6 +2274,11 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /@remix-run/router@1.9.0:
+    resolution: {integrity: sha512-bV63itrKBC0zdT27qYm6SDZHlkXwFL1xMBuhkn+X7l0+IIhNaH5wuuvZKp6eKhCD4KFhujhfhCT1YxXW6esUIA==}
+    engines: {node: '>=14.0.0'}
+    dev: false
+
   /@rollup/plugin-babel@5.3.1(@babel/core@7.23.0)(rollup@2.79.1):
     resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
     engines: {node: '>= 10.0.0'}
@@ -3811,6 +3825,13 @@ packages:
     engines: {node: '>= 0.8'}
     dev: false
 
+  /cache2@1.0.4:
+    resolution: {integrity: sha512-FenAiJ+X2DKJs8Hg3m+R8MGIVqTGy34Wlw8pleGxlBFYdrV23n0sJa5NgMWh6OaPOcpIO4rV8IHB0Kt75ZcugQ==}
+    dependencies:
+      emitter-pro: 1.0.3
+      tslib: 2.6.2
+    dev: false
+
   /call-bind@1.0.2:
     resolution: {integrity: sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==}
     dependencies:
@@ -4718,6 +4739,10 @@ packages:
 
   /electron-to-chromium@1.4.532:
     resolution: {integrity: sha512-piIR0QFdIGKmOJTSNg5AwxZRNWQSXlRYycqDB9Srstx4lip8KpcmRxVP6zuFWExWziHYZpJ0acX7TxqX95KBpg==}
+    dev: false
+
+  /emitter-pro@1.0.3:
+    resolution: {integrity: sha512-ZDkQvjkUfNR/fg2ugjPfknoNpvlrGT13qx1BJXJWXGM/ERhMc/v3XGcQebQIoE/uRJUtehL4htSbK3h5+Jih/Q==}
     dev: false
 
   /emittery@0.10.2:
@@ -8881,6 +8906,17 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /rc-hooks@3.0.5(react@18.2.0):
+    resolution: {integrity: sha512-Pc2ZOB1ZmpGneh6JhwU6MxmIyEry66X7tZbBj7S49NRhUQYY6ow+cfPInRs6/gzg9/EXAZ5MfjLzfiinKnucpw==}
+    peerDependencies:
+      react: '>= 16.8.6'
+    dependencies:
+      cache2: 1.0.4
+      react: 18.2.0
+      tslib: 2.6.2
+      ut2: 1.4.9
+    dev: false
+
   /rc-image@7.2.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-5Ug2hCVl6VcT0osR5XaZQ4zclTMEWPnbn3b4/TS/MR1QjRpEACLNFUzBGwr5mbAVhzvLWX5YZf4vO10xUA5IUA==}
     peerDependencies:
@@ -9113,6 +9149,17 @@ packages:
       rc-virtual-list: 3.11.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /rc-slider-captcha@1.2.1(react@18.2.0):
+    resolution: {integrity: sha512-OE9r308PUdPjkcRsuCmnnmfTq5Y1n8Mkugbqyx0wnI39Cwgfix6zO91pItkjsnp2tapQMvQPbsLvtyN0ky+0Ww==}
+    peerDependencies:
+      react: '>=16.9.0'
+    dependencies:
+      classnames: 2.3.2
+      rc-hooks: 3.0.5(react@18.2.0)
+      react: 18.2.0
+      tslib: 2.6.2
     dev: false
 
   /rc-slider@10.2.1(react-dom@18.2.0)(react@18.2.0):
@@ -9373,6 +9420,29 @@ packages:
   /react-refresh@0.11.0:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /react-router-dom@6.16.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-aTfBLv3mk/gaKLxgRDUPbPw+s4Y/O+ma3rEN1u8EgEpLpPe6gNjIsWt9rxushMHHMb7mSwxRGdGlGdvmFsyPIg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.9.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-router: 6.16.0(react@18.2.0)
+    dev: false
+
+  /react-router@6.16.0(react@18.2.0):
+    resolution: {integrity: sha512-VT4Mmc4jj5YyjpOi5jOf0I+TYzGpvzERy4ckNSvSh2RArv8LLoCxlsZ2D+tc7zgjxcY34oTz2hZaeX5RVprKqA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.9.0
+      react: 18.2.0
     dev: false
 
   /react-scripts@5.0.1(@babel/plugin-syntax-flow@7.22.5)(@babel/plugin-transform-react-jsx@7.22.15)(eslint@8.50.0)(react@18.2.0)(typescript@4.9.5):
@@ -10781,6 +10851,10 @@ packages:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
+    dev: false
+
+  /ut2@1.4.9:
+    resolution: {integrity: sha512-jHl4JJ8qkK1neWyPq3SqLOWidsxkvMzLYTO28g85ww0aaZMB5MTX7rklqSfzdkxe/qb5/dCAP5xMUGXz8A9y7w==}
     dev: false
 
   /util-deprecate@1.0.2:
