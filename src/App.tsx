@@ -1,6 +1,7 @@
 import Main from './pages/Main';
 import LoginAndRegister from './pages/LoginAndRegister';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './index.css'
 
 function App() {
   return (

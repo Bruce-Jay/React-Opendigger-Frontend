@@ -6,11 +6,12 @@ import { Collapse } from 'antd';
 
 import { useAppContext } from "./AppContext";
 import * as echarts from "echarts";
-import SubmitForm from "./SubmitForm";
+import RepoSubmitForm from "./RepoSubmitForm";
 
 interface FormData {
-    repository: string;
-    metric: string;
+    repository?: string;
+    user?: string;
+    metric?: string;
 }
 
 interface ChartProps {
@@ -20,7 +21,7 @@ interface ChartProps {
 
 
 async function getOpendiggerContent(formData: FormData) {
-    if (!formData.repository || !formData.metric) {
+    if (!formData.repository && !formData.user) {
         return {};
     }
     const res = await post("/submit", formData);

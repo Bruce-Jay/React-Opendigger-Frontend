@@ -9,11 +9,11 @@ const onFinishFailed = (errorInfo: any) => {
 };
 
 type FieldType = {
-    repository?: string;
+    user?: string;
     metric?: string;
 };
 
-const SubmitForm: React.FC = () => {
+const UserSubmitForm: React.FC = () => {
     const { formData, setFormData } = useAppContext();
     const [form] = Form.useForm();
 
@@ -28,8 +28,9 @@ const SubmitForm: React.FC = () => {
         <Form
             form={form}
             name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
+            layout="horizontal"
+            labelCol={{ span: 6 }}
+            wrapperCol={{ span: 12 }}
             style={{ maxWidth: 600 }}
             initialValues={{ repository: 'valhalla/valhalla', metric: 'openrank' }}
             onFinish={onFinish}
@@ -37,11 +38,11 @@ const SubmitForm: React.FC = () => {
             autoComplete="off"
         >
             <Form.Item<FieldType>
-                label="repository"
-                name="repository"
-                rules={[{ required: true, message: "Please input your repository!" }]}
+                label="user"
+                name="user"
+                rules={[{ required: true, message: "Please input the username!" }]}
             >
-                <Input defaultValue="valhalla/valhalla"/>
+                <Input defaultValue="valhalla"/>
             </Form.Item>
 
             <Form.Item<FieldType>
@@ -51,7 +52,7 @@ const SubmitForm: React.FC = () => {
             >
                 <Select 
                     defaultValue="openrank"
-                    style={{width: 300}}
+                    
                     options={[
                         {value: "openrank", label: "openrank"},
                         {value: "activity", label: "activity"}
@@ -68,4 +69,4 @@ const SubmitForm: React.FC = () => {
     );
 };
 
-export default SubmitForm;
+export default UserSubmitForm;

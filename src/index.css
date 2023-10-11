@@ -1,29 +1,35 @@
 .data-element {
-    display: inline-block;
-    width: calc(20% - 10px); /* 每行四个元素，间距为10px */
-    margin: 5px; /* 间距 */
-    padding: 10px;
-    border: 1px solid #ccc;
+  display: inline-block;
+  width: calc(20% - 10px); /* 每行四个元素，间距为10px */
+  margin: 5px; /* 间距 */
+  padding: 10px;
+  border: 1px solid #ccc;
 }
 
 .gutter-box {
-    padding: 8px 0;
-    background: #00a0e9;
+  padding: 8px 0;
+  background: #00a0e9;
 }
 
 .scrollable-container {
-  overflow: auto;
-  height: 300px; /* 设置容器高度 */
+overflow: auto;
+height: 300px; /* 设置容器高度 */
 }
 
 .loginButtonSize {
-  width: 400px;
+width: 400px;
 }
 
 .loginDiv {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+position: absolute;
+top: 30%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.RadioStyle {
+margin-left: 30px;
+margin-bottom: 20px;
+margin-top: 10px;
 }
 

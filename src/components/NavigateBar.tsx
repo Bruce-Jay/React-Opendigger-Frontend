@@ -1,8 +1,8 @@
-interface TabBarProps {
+interface NavigateBarProps {
     children: React.ReactNode;
 }
 
-const TabBar = ({ children }: TabBarProps) => {
+const NavigateBar = ({ children }: NavigateBarProps) => {
     return (
         <div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -14,4 +14,4 @@ const TabBar = ({ children }: TabBarProps) => {
     )
 }
 
-export default TabBar;
+export default NavigateBar;
