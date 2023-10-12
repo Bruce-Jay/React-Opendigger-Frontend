@@ -1,8 +1,6 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useAppContext } from "./AppContext";
 import { Button, Form, Input, Select } from "antd";
-
-
 
 const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
@@ -13,20 +11,23 @@ type FieldType = {
     metric?: string;
 };
 
-const UserSubmitForm: React.FC = () => {
+const UserSubmitForm = (props: any) => {
     const { formData, setFormData } = useAppContext();
-    const [form] = Form.useForm();
-
+    const [userForm] = Form.useForm();
+    
     // 处理表单提交
     const onFinish = (values: any) => {
         console.log("Success:", values);
         setFormData(values);
     };
 
+    useEffect(() => {
+        userForm.setFieldsValue({user: 'Bruce-Jay'})
+    }, [])
 
     return (
         <Form
-            form={form}
+            form={userForm}
             name="basic"
             layout="horizontal"
             labelCol={{ span: 6 }}
@@ -42,7 +43,7 @@ const UserSubmitForm: React.FC = () => {
                 name="user"
                 rules={[{ required: true, message: "Please input the username!" }]}
             >
-                <Input defaultValue="valhalla"/>
+                <Input  />
             </Form.Item>
 
             <Form.Item<FieldType>

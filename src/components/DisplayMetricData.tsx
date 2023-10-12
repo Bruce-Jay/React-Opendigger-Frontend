@@ -1,24 +1,15 @@
 import { post } from "../request";
-import React, { useState, useEffect } from "react";
-import { ReactDOM } from "react";
+import React, { useEffect } from "react";
 import type { CollapseProps } from 'antd';
 import { Collapse } from 'antd';
 
 import { useAppContext } from "./AppContext";
-import * as echarts from "echarts";
-import RepoSubmitForm from "./RepoSubmitForm";
 
 interface FormData {
     repository?: string;
     user?: string;
     metric?: string;
 }
-
-interface ChartProps {
-    data: { [key: string]: string };
-}
-
-
 
 async function getOpendiggerContent(formData: FormData) {
     if (!formData.repository && !formData.user) {

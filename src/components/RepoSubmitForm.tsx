@@ -1,7 +1,7 @@
 import React, { FormEvent } from "react";
 import { useAppContext } from "./AppContext";
-import { Button, Form, Input, Select } from "antd";
-
+import { Button, Form, Input, Select, Tag } from "antd";
+import type {SelectProps} from 'antd';
 
 
 const onFinishFailed = (errorInfo: any) => {
@@ -14,14 +14,35 @@ type FieldType = {
 };
 
 const RepoSubmitForm: React.FC = () => {
-    const { formData, setFormData } = useAppContext();
+    const { formData, setFormData, setMetric } = useAppContext();
     const [form] = Form.useForm();
 
     // 处理表单提交
     const onFinish = (values: any) => {
         console.log("Success:", values);
         setFormData(values);
+        setMetric(values.metric)
     };
+
+    // 处理选择器标签
+    const tagRender = (props: any) => {
+        const {label, value, closable, onClose} = props
+        console.log(props);
+        const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
+            event.preventDefault();
+            event.stopPropagation();
+        };
+        return (
+            <Tag
+                onMouseDown={onPreventMouseDown}
+                closable={closable}
+                onClose={onClose}
+                style={{ marginRight: 3 }}
+            >
+                {label}
+            </Tag>
+        )
+    }
 
 
     return (
@@ -51,8 +72,9 @@ const RepoSubmitForm: React.FC = () => {
                 rules={[{ required: true, message: "Please input your metric!" }]}
             >
                 <Select 
-                    defaultValue="openrank"
-                    
+                    defaultValue={["openrank"]}
+                    mode="multiple"
+                    tagRender={tagRender}
                     options={[
                         {value: "openrank", label: "openrank"},
                         {value: "activity", label: "activity"}

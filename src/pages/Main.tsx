@@ -1,7 +1,7 @@
 import { Row, Col, Skeleton, Alert, Radio } from "antd";
 import type { TabsProps, RadioChangeEvent } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { sleep } from "ut2";
 
 import DisplayMetricData from "../components/DisplayMetricData";

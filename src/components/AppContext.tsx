@@ -2,7 +2,7 @@ import React, { createContext, useContext, ReactNode, useState } from "react";
 
 interface FormData {
     repository: string;
-    metric: string;
+    metric: string[];
 }
 
 interface RawData {
@@ -10,10 +10,12 @@ interface RawData {
 }
 
 interface AppContextType {
-    rawData: RawData;
-    setRawData: (data: RawData) => void;
+    rawData: RawData[];
+    setRawData: (data: RawData[]) => void;
     formData: FormData;
     setFormData: (data: FormData) => void;
+    metric: string[];
+    setMetric: (data: string[]) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -24,11 +26,11 @@ interface AppContextProviderProps {
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
 
-    const [rawData, setRawData] = useState<RawData>({})
-
+    const [rawData, setRawData] = useState<RawData[]>([])
+    const [metric, setMetric] = useState([''])
     const [formData, setFormData] = useState<FormData>({
         repository: "",
-        metric: "",
+        metric: [],
     });
 
 
@@ -38,7 +40,9 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
                 rawData,
                 setRawData,
                 formData,
-                setFormData
+                setFormData,
+                metric,
+                setMetric,
             }}
         >
             {children}
