@@ -10,7 +10,7 @@ const onFinishFailed = (errorInfo: any) => {
 
 type FieldType = {
     repository?: string;
-    metric?: string;
+    metric?: string[];
 };
 
 const RepoSubmitForm: React.FC = () => {
@@ -27,7 +27,7 @@ const RepoSubmitForm: React.FC = () => {
     // 处理选择器标签
     const tagRender = (props: any) => {
         const {label, value, closable, onClose} = props
-        console.log(props);
+        // console.log(props);
         const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
             event.preventDefault();
             event.stopPropagation();
@@ -53,7 +53,7 @@ const RepoSubmitForm: React.FC = () => {
             labelCol={{ span: 6 }}
             wrapperCol={{ span: 12 }}
             style={{ maxWidth: 600 }}
-            initialValues={{ repository: 'valhalla/valhalla', metric: 'openrank' }}
+            initialValues={{ repository: 'valhalla/valhalla', metric: ['activity', 'openrank'] }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
@@ -63,7 +63,7 @@ const RepoSubmitForm: React.FC = () => {
                 name="repository"
                 rules={[{ required: true, message: "Please input your repository!" }]}
             >
-                <Input defaultValue="valhalla/valhalla"/>
+                <Input />
             </Form.Item>
 
             <Form.Item<FieldType>
@@ -72,12 +72,11 @@ const RepoSubmitForm: React.FC = () => {
                 rules={[{ required: true, message: "Please input your metric!" }]}
             >
                 <Select 
-                    defaultValue={["openrank"]}
                     mode="multiple"
                     tagRender={tagRender}
                     options={[
+                        {value: "activity", label: "activity"},
                         {value: "openrank", label: "openrank"},
-                        {value: "activity", label: "activity"}
                     ]}
                 />
             </Form.Item>

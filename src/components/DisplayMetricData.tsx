@@ -8,7 +8,7 @@ import { useAppContext } from "./AppContext";
 interface FormData {
     repository?: string;
     user?: string;
-    metric?: string;
+    metric?: string[];
 }
 
 async function getOpendiggerContent(formData: FormData) {
@@ -20,32 +20,45 @@ async function getOpendiggerContent(formData: FormData) {
 }
 
 const DisplayMetricData = () => {
-    const { formData, setRawData, rawData } = useAppContext();
+    const { formData, setRawData, rawData, metric } = useAppContext();
+    const metricArr = typeof metric === 'string' ? [metric] : metric
+    let filteredRawData: Array<Array<[string, number]>> = []
+    let items: CollapseProps['items'] = []
 
-    const items: CollapseProps['items'] = [
-        {
-            key: '1',
-            label: 'OpenRank',
-            children: 
+    if (rawData.length) {
+        rawData.map((item) => {
+            let dataArr: Array<[string, number]> = []
+            // 不为空对象，否则会报错
+            if (Object.keys(item).length !== 0) {
+                dataArr = Object.entries(item)
+                dataArr = dataArr.filter((item) => {
+                    return item[0].includes('-') && !item[0].includes('raw')
+                })
+            }
+            filteredRawData.push(dataArr)
+        })
+
+        for (let i = 0; i < metricArr.length; i++) {
+            items.push({
+                key: i,
+                label: metricArr[i],
+                children: 
                     <div className="scrollable-container">
-                        {Object.entries(rawData).map(([date, value]) => (
+                        {filteredRawData[i].map(([date, value]) => (
                             <div key={date}>
                                 {date}: {value}
                             </div>
                         ))}
                     </div>
-        },
-        {
-            key: '2',
-            label: 'Activity',
-            children: <p>This is a test panel</p>
+            })
         }
-    ]
+    }
     
 
     useEffect(() => {
         getOpendiggerContent(formData).then((data: any) => {
             setRawData(data);
+            console.log('raw', rawData);
         });
         console.log('display', formData)
     }, [formData]);
@@ -53,14 +66,6 @@ const DisplayMetricData = () => {
     return (
         
         <Collapse items={items} />
-            // <div>
-            //     {Object.entries(rawData).map(([date, value]) => (
-            //         <div key={date}>
-            //             {date}: {value}
-            //         </div>
-            //     ))}
-            // </div>
-        
     );
 };
 

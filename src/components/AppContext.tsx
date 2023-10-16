@@ -1,8 +1,9 @@
 import React, { createContext, useContext, ReactNode, useState } from "react";
 
 interface FormData {
-    repository: string;
-    metric: string[];
+    repository?: string;
+    user?: string;
+    metric?: string[];
 }
 
 interface RawData {
