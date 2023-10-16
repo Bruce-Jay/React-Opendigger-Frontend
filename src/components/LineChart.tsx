@@ -18,7 +18,10 @@ const LineChart: React.FC = () => {
     // 只保留 yyyy-mm 格式的 object entries 数组
     let filteredRawData: Array<Array<[string, number]>> = []
     // 记录每一种 metric 所对应的 data
-    const metricArr = typeof metric === 'string' ? [metric] : metric
+    const metricArr: React.MutableRefObject<string[]> = React.useRef([])
+    useEffect(() => {
+        metricArr.current = typeof metric === 'string' ? [metric] : metric
+    }, [metric])
     // 将数据的种类（此处为日期）存储到一个变量中，用于后续的图表横坐标
     let xAxisData: Array<string> = []
     
@@ -53,14 +56,14 @@ const LineChart: React.FC = () => {
     
         
         let metricDataKV: MetricDataKV = {}
-        for (let i = 0; i < metricArr.length; i++) {
-            metricDataKV[metricArr[i]] = filteredRawData[i]
+        for (let i = 0; i < metricArr.current.length; i++) {
+            metricDataKV[metricArr.current[i]] = filteredRawData[i]
         }
     
         
-        for (let i = 0; i < metricArr.length; i++) {
+        for (let i = 0; i < metricArr.current.length; i++) {
             chartSeries.push({
-                name: metricArr[i],
+                name: metricArr.current[i],
                 type: "bar",
                 data: filteredRawData[i],
                 // markLine: {
@@ -89,7 +92,7 @@ const LineChart: React.FC = () => {
                 text: chartTitle,
             },
             legend: {
-                data: metricArr,
+                data: metricArr.current,
             },
             tooltip: {
                 trigger: 'axis',

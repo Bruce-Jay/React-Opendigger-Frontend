@@ -21,7 +21,10 @@ async function getOpendiggerContent(formData: FormData) {
 
 const DisplayMetricData = () => {
     const { formData, setRawData, rawData, metric } = useAppContext();
-    const metricArr = typeof metric === 'string' ? [metric] : metric
+    const metricArr: React.MutableRefObject<string[]> = React.useRef([])
+    useEffect(() => {
+        metricArr.current = typeof metric === 'string' ? [metric] : metric
+    }, [metric])
     let filteredRawData: Array<Array<[string, number]>> = []
     let items: CollapseProps['items'] = []
 
@@ -38,10 +41,10 @@ const DisplayMetricData = () => {
             filteredRawData.push(dataArr)
         })
 
-        for (let i = 0; i < metricArr.length; i++) {
+        for (let i = 0; i < metricArr.current.length; i++) {
             items.push({
                 key: i,
-                label: metricArr[i],
+                label: metricArr.current[i],
                 children: 
                     <div className="scrollable-container">
                         {filteredRawData[i].map(([date, value]) => (
