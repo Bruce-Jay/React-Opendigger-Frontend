@@ -21,25 +21,26 @@ const Main = () => {
     }
 
     useEffect(() => {
-        if (!localStorage.getItem("IsLoggedIn")) {
-            setIsLoading(true);
-            sleep(3000).then(() => {
-                console.log("sleep");
-                navigate("/login");
-            });
-        } else {
-            sleep(1000);
-        }
+        // if (!localStorage.getItem("IsLoggedIn")) {
+        //     setIsLoading(true);
+        //     sleep(3000).then(() => {
+        //         console.log("sleep");
+        //         navigate("/login");
+        //     });
+        // } else {
+        //     sleep(1000);
+        // }
     }, []);
 
     return (
         <>
-            {isLoading ? (
+            {/* {isLoading ? (
                 <>
                     <Alert type="error" message="请先登录, 3 秒后自动跳转至登录页" banner/>
                     <Skeleton active />
                 </>
-            ) : (
+            ) :  */}
+            (
                 <AppContextProvider>
                     <NavigateBar>
                         <Radio.Group defaultValue="repository" className="RadioStyle" onChange={infoTypeChange}>
@@ -60,7 +61,7 @@ const Main = () => {
                         </Row>
                     </NavigateBar>
                 </AppContextProvider>
-            )}
+            )
         </>
     );
 };
