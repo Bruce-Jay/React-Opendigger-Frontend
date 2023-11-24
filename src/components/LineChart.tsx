@@ -11,7 +11,7 @@ interface MetricDataKV {
 const LineChart: React.FC = () => {
     const chartRef = React.useRef<HTMLDivElement>(null);
 
-    const {rawData, metric} = useAppContext()
+    const {rawData, metric, formData} = useAppContext()
     // console.log('metric', metric);
     
     let chartSeries: Array<any> = []
@@ -64,7 +64,8 @@ const LineChart: React.FC = () => {
         for (let i = 0; i < metricArr.current.length; i++) {
             chartSeries.push({
                 name: metricArr.current[i],
-                type: "bar",
+                type: formData.chartType,
+                smooth: true,
                 data: filteredRawData[i],
                 // markLine: {
                 //     data: [{type: 'average', name: 'Avg'}]
@@ -85,7 +86,8 @@ const LineChart: React.FC = () => {
     useEffect(() => {
         const chart = echarts.init(chartRef.current!);
 
-        const chartTitle = metric ? `${metric} Chart` : "Chart"
+        // const chartTitle = metric ? `${metric} Chart` : "Chart"
+        const chartTitle = "Opendigger Chart"
 
         let option: echarts.EChartOption = {
             title: {

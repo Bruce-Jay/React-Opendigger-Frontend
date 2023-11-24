@@ -40,7 +40,7 @@ const Main = () => {
                     <Skeleton active />
                 </>
             ) :  */}
-            (
+            
                 <AppContextProvider>
                     <NavigateBar>
                         <Radio.Group defaultValue="repository" className="RadioStyle" onChange={infoTypeChange}>
@@ -61,7 +61,7 @@ const Main = () => {
                         </Row>
                     </NavigateBar>
                 </AppContextProvider>
-            )
+        
         </>
     );
 };

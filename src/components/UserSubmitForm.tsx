@@ -8,7 +8,8 @@ const onFinishFailed = (errorInfo: any) => {
 
 type FieldType = {
     user?: string;
-    metric?: string;
+    metric?: string[];
+    chartType?: string;
 };
 
 const UserSubmitForm = (props: any) => {
@@ -53,7 +54,7 @@ const UserSubmitForm = (props: any) => {
             labelCol={{ span: 6 }}
             wrapperCol={{ span: 12 }}
             style={{ maxWidth: 600 }}
-            initialValues={{ user: 'Bruce-Jay', metric: ['activity', 'openrank'] }}
+            initialValues={{ user: 'Bruce-Jay', metric: ['activity', 'openrank'], chartType: "bar" }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
@@ -77,6 +78,19 @@ const UserSubmitForm = (props: any) => {
                     options={[
                         {value: "activity", label: "activity"},
                         {value: "openrank", label: "openrank"},
+                    ]}
+                />
+            </Form.Item>
+
+            <Form.Item<FieldType>
+                label="Chart Type"
+                name="chartType"
+            >
+                <Select
+                    defaultValue="bar"
+                    options={[
+                        {value: "bar", label: "bar"},
+                        {value: "line", label: "line"},
                     ]}
                 />
             </Form.Item>

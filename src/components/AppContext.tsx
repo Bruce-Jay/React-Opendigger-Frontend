@@ -4,6 +4,7 @@ interface FormData {
     repository?: string;
     user?: string;
     metric?: string[];
+    chartType?: string;
 }
 
 interface RawData {
@@ -32,6 +33,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
     const [formData, setFormData] = useState<FormData>({
         repository: "",
         metric: [],
+        chartType: "",
     });
 
 

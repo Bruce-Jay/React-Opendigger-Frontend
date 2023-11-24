@@ -11,6 +11,7 @@ const onFinishFailed = (errorInfo: any) => {
 type FieldType = {
     repository?: string;
     metric?: string[];
+    chartType?: string;
 };
 
 const RepoSubmitForm: React.FC = () => {
@@ -53,13 +54,13 @@ const RepoSubmitForm: React.FC = () => {
             labelCol={{ span: 6 }}
             wrapperCol={{ span: 12 }}
             style={{ maxWidth: 600 }}
-            initialValues={{ repository: 'valhalla/valhalla', metric: ['activity', 'openrank'] }}
+            initialValues={{ repository: 'valhalla/valhalla', metric: ['activity', 'openrank'], chartType: "bar" }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
             <Form.Item<FieldType>
-                label="repository"
+                label="Repository"
                 name="repository"
                 rules={[{ required: true, message: "Please input your repository!" }]}
             >
@@ -67,7 +68,7 @@ const RepoSubmitForm: React.FC = () => {
             </Form.Item>
 
             <Form.Item<FieldType>
-                label="metric"
+                label="Metric"
                 name="metric"
                 rules={[{ required: true, message: "Please input your metric!" }]}
             >
@@ -77,6 +78,19 @@ const RepoSubmitForm: React.FC = () => {
                     options={[
                         {value: "activity", label: "activity"},
                         {value: "openrank", label: "openrank"},
+                    ]}
+                />
+            </Form.Item>
+
+            <Form.Item<FieldType>
+                label="Chart Type"
+                name="chartType"
+            >
+                <Select
+                    defaultValue="bar"
+                    options={[
+                        {value: "bar", label: "bar"},
+                        {value: "line", label: "line"},
                     ]}
                 />
             </Form.Item>
